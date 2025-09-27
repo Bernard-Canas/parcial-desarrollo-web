@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kanas Pokedex — Adaptación Gemini</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body class="gemini-layout">
+  <div id="overlay" class="overlay"></div>
+
+  <aside id="sidebar" class="sidebar" role="navigation" aria-label="Menú principal">
+    <div class="sidebar__top">
+      <h1 class="brand" aria-label="Kanas Pokedex"><i class="fa-solid fa-bolt brand__icon"></i> Kanas<span class="brand__accent">Pokedex</span></h1>
+      <button id="sidebarClose" class="sidebar__close" aria-label="Cerrar menú"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <nav class="menu" aria-label="Main menu">
+      <ul class="menu__list">
+        <li class="menu__item menu__item--active" data-section="inicio"><i class="fa-solid fa-house menu__icon"></i><span class="menu__text">Inicio</span></li>
+        <li class="menu__item" data-section="favoritos"><i class="fa-solid fa-star menu__icon"></i><span class="menu__text">Favoritos</span></li>
+        <li class="menu__item" data-section="naturaleza"><i class="fa-solid fa-leaf menu__icon"></i><span class="menu__text">Naturaleza</span></li>
+        <li class="menu__item" data-section="todos"><i class="fa-solid fa-list menu__icon"></i><span class="menu__text">Todos</span></li>
+        <li class="menu__item" data-section="tipos"><i class="fa-solid fa-layer-group menu__icon"></i><span class="menu__text">Tipos</span></li>
+        <li class="menu__item" data-section="acerca"><i class="fa-solid fa-user menu__icon"></i><span class="menu__text">Acerca</span></li>
+      </ul>
+    </nav>
+
+    <footer class="sidebar__footer">
+      <small>Bernardo Canas — Proyecto</small>
+    </footer>
+  </aside>
+
+  <div class="main-container">
+    <header class="top-bar">
+      <button id="hamburger" class="hamburger" aria-label="Abrir/Cerrar menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <section id="searchSection" class="search-section" role="search" aria-label="Buscador">
+        <div class="search-wrap">
+          <input id="searchInput" class="search-input" type="text" placeholder="Buscar Pokémon por nombre o # (ej: pikachu o 25)" aria-label="Buscar Pokémon">
+          <button id="searchButton" class="search-button" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </section>
+    </header>
+
+    <main class="main" id="main">
+      <section class="content" id="content" aria-live="polite">
+        
+        <section id="inicio" class="panel panel--active" aria-labelledby="inicioTitle">
+          <h2 id="inicioTitle" class="panel__title">Más populares</h2>
+          <div id="popularGrid" class="popular-grid" role="list"></div>
+        </section>
+
+        <section id="favoritos" class="panel" aria-labelledby="favoritosTitle">
+          <h2 id="favoritosTitle" class="panel__title">Favoritos</h2>
+          <div id="favoritesGrid" class="popular-grid" role="list"></div>
+        </section>
+
+        <section id="naturaleza" class="panel" aria-labelledby="naturalezaTitle">
+          <h2 id="naturalezaTitle" class="panel__title">Naturaleza</h2>
+          <div id="natureList" class="nature-grid" role="list">
+             </div>
+        </section>
+
+        <section id="todos" class="panel" aria-labelledby="todosTitle">
+          <h2 id="todosTitle" class="panel__title">Todos los Pokémons</h2>
+          <div id="allList" class="all-list-grid" role="list"></div>
+        </section>
+
+        <section id="tipos" class="panel" aria-labelledby="tiposTitle">
+          <h2 id="tiposTitle" class="panel__title">Tipos</h2>
+          <div id="typesGrid" class="types-grid" role="list"></div>
+
+          <div id="typeFilterTitle" class="panel__subtitle" style="display:none; margin-top: 30px;">
+            Pokémon de tipo: <span id="currentType"></span>
+          </div>
+          
+          <div id="typeFilteredList" class="all-list-grid" role="list" style="margin-top: 20px;"></div>
+        </section>
+
+        <section id="acerca" class="panel" aria-labelledby="acercaTitle">
+          <h2 id="acercaTitle" class="panel__title">Acerca de</h2>
+          <div class="about">
+            <p><strong>Bernardo Canas</strong> — Estudiante de Ingeniería en Sistemas, Universidad Da Vinci.</p>
+            <p>Proyecto: Kanas Pokedex — Uso de la PokeAPI (https://pokeapi.co) con fetch y diseño moderno.</p>
+          </div>
+        </section>
+
+        <section id="detailCenter" class="panel panel--detail" aria-labelledby="detailTitle"></section>
+      </section>
+    </main>
+  </div>
+
+  <script src="/JS/app.js" defer></script>
+</body>
+</html>

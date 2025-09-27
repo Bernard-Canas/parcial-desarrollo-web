@@ -1,0 +1,425 @@
+/* style.css - Kanas Pokedex (Adaptado a Gemini/Responsivo) */
+
+/* Reset básico */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background: #3a0052bd;
+  color: #00ffd5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Layout: flex en body para Sidebar y Main Content */
+.gemini-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Overlay para cerrar sidebar en móvil */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 900;
+}
+
+/* ====================
+   SIDEBAR (Menú)
+   ==================== */
+.sidebar {
+  width: 240px;
+  padding: 16px;
+  background: #1f2128;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  z-index: 10;
+  flex-shrink: 0;
+  transition: transform 0.28s ease, width 0.28s ease, padding 0.28s ease;
+}
+
+/* Ocultar sidebar en desktop (por defecto, para el estilo Gemini) */
+.sidebar.hidden {
+  transform: translateX(-100%);
+  width: 0;
+  padding: 0;
+  overflow: hidden; /* Evita que el contenido se desborde al achicarse */
+}
+
+.brand { font-size: 18px; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px; }
+.brand__icon { color:#5c48ff; font-size: 20px; }
+.brand__accent { color:#ff3b8a; }
+
+.sidebar__top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.sidebar__close { display:none; background:transparent; border:none; color:#fff; cursor:pointer; }
+
+/* Menu */
+.menu__list { list-style:none; display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+.menu__item {
+  padding: 10px 12px; border-radius:12px; cursor:pointer; display:flex; align-items:center; gap:12px;
+  color:#07eaf1; transition: background .12s ease;
+}
+.menu__item:hover { background: rgba(255,255,255,0.08); }
+.menu__item--active { background: #3b3d45; font-weight: 600; color: #fff; }
+.menu__icon { width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; }
+.menu__text { font-size:14px; }
+.sidebar__footer { margin-top: auto; padding-top: 20px; text-align: center; color: rgba(255,255,255,0.4); }
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  gap: 20px;
+  background: #01194957;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Hamburger (Botón para ocultar/mostrar sidebar) */
+.hamburger {
+  display: block; /* Siempre visible, su posición y acción cambia */
+  background: transparent;
+  border: none;
+  color: #00fff2;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+.hamburger:hover { background: rgba(250, 5, 5, 0.05); }
+
+/* ====================
+   SEARCH SECTION (Centrado en su bloque)
+   ==================== */
+.search-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.search-wrap {
+  display: flex;
+  gap: 8px;
+  align-items:center;
+  width: min(700px, 96%);
+  justify-content:center;
+  background: #282a32;
+  border-radius: 16px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 10px rgba(7, 198, 223, 0.3);
+}
+.search-input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #eef2ff;
+  font-size: 16px;
+  outline: none;
+}
+.search-input::placeholder { color: rgba(255,255,255,0.4); }
+.search-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  color: #ff3b8a;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.1s ease;
+}
+.search-button:hover { background: rgba(255,59,138,0.1); }
+
+/* Main Content Area */
+.main {
+  padding: 0 20px 48px 20px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Content panels */
+.content { padding: 16px 0 0 0; }
+.panel { display: none; }
+.panel--active { display: block; }
+.panel__title { font-size: 24px; margin-bottom: 20px; color: #fff; }
+
+/* Popular grid */
+.popular-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap:20px;
+}
+.popular-card {
+  border-radius: 16px;
+  padding: 18px;
+  background: #1f2128;
+  border: 1px solid rgb(1, 255, 234);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.popular-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(0,0,0,0.6); }
+.popular-card__head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.popular-card__title { font-size:18px; font-weight:700; text-transform:capitalize; }
+.popular-card__img { display:flex; justify-content:center; align-items:center; padding: 10px 0; }
+.popular-card__img img { max-width:180px; max-height:180px; object-fit:contain; cursor: pointer; }
+
+/* Buttons */
+.favorite-btn {
+  background: linear-gradient(90deg,#ffd166,#ffb86b);
+  border:none; padding:8px 14px; border-radius:10px; cursor:pointer; font-weight:600;
+  color: #1f2128;
+  font-size: 14px;
+}
+.detail-btn {
+  background:rgba(255,255,255,0.05);
+  border:none;
+  padding:8px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  color:rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+/* Stat bar */
+.popular-card__bar { height: 10px; background: rgba(255,255,255,0.08); border-radius:6px; overflow:hidden; margin-top:8px; }
+.popular-card__bar-fill { height:100%; width:0%; border-radius:6px; background: linear-gradient(90deg,#ff3b8a,#5c48ff); transition: width .6s ease; }
+
+/* Detail (Buscador) */
+.panel--detail { display:flex; align-items:flex-start; justify-content:center; min-height:400px; padding-top: 40px; }
+.detail {
+  width: min(820px, 100%);
+  border-radius: 18px;
+  padding: 24px;
+  background: #1f2128;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  display:flex;
+  gap:24px;
+}
+.detail__left img { width: 200px; height: 200px; object-fit:contain; }
+.detail__title { font-size:28px; text-transform:capitalize; }
+.detail__right { flex: 1; }
+
+/* Attack/Defense bars */
+.stat-hr { height:10px; background: rgba(255,255,255,0.08); border-radius:6px; overflow:hidden; margin:8px 0; }
+.stat-fill { height:100%; width:0%; border-radius:6px; background: linear-gradient(90deg,#5c48ff,#6390F0); transition: width .6s ease; }
+
+/* Tipos */
+.type-badge {
+  display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  margin-right: 4px; color: #fff; text-transform: capitalize;
+}
+
+/* ALL list grid compact */
+.all-list-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:12px; }
+.all-item-compact { background: #1f2128; border-radius:12px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; text-align:center; transition: background .12s ease; }
+.all-item-compact:hover { background: #282a32; }
+.all-item-compact img { width:64px; height:64px; object-fit:contain; }
+.all-item-number { font-weight:700; color: rgba(255,255,255,0.6); font-size: 12px; }
+.all-item-name { text-transform:capitalize; color: rgba(255,255,255,0.95); font-size: 14px; }
+
+
+/* ====================
+   RESPONSIVE
+   ==================== */
+
+/* Tablet y Móvil (<= 900px): Sidebar oculto/deslizable */
+@media (max-width: 900px) {
+  /* Sidebar fijo a la izquierda */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; height: 100vh;
+    transform: translateX(-100%); /* Oculto por defecto en móvil */
+    transition: transform 0.28s ease;
+    z-index: 950;
+    width: 260px; /* Ancho fijo para deslizar */
+  }
+  .sidebar.open { transform: translateX(0); } /* Mostrar en móvil */
+  .sidebar.hidden { /* En móvil solo se usa "open" para mostrar */
+    transform: translateX(-100%);
+    width: 260px;
+    padding: 16px;
+  }
+
+  .sidebar__close { display:inline-block; } /* Botón de cierre en el menú móvil */
+
+  .top-bar { padding: 12px 16px; }
+
+  .search-wrap {
+    width: 100%;
+    max-width: none;
+    padding: 6px 10px;
+  }
+  .search-input { font-size: 14px; }
+  .search-button { font-size: 16px; padding: 6px; }
+
+  .main { padding: 0 16px 40px 16px; }
+  .panel__title { font-size: 20px; }
+
+  /* Detalle: Cambiar a layout vertical */
+  .detail {
+    flex-direction: column;
+    align-items: center;
+    padding: 18px;
+    gap: 18px;
+  }
+  .detail__title { font-size: 24px; text-align: center; }
+}
+
+/* Móviles pequeños (<= 500px) */
+@media (max-width: 500px) {
+  .detail__left img { width: 160px; height: 160px; }
+  .popular-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+/* style.css */
+
+/* Contenedor principal para usar Grid */
+.nature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding-top: 10px;
+}
+
+/* Estilo base de la tarjeta */
+.nature-card {
+    background-color: rgb(25, 38, 51);
+    border: 1px solid rgba(0, 255, 234, 0.527);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 99, 86, 0.493);
+    transition: transform 0.2s;
+}
+
+.nature-card:hover {
+    transform: translateY(-3px);
+    border: 5px solid rgb(0, 225, 255);
+    border-radius: 17px;
+}
+
+.nature-card__name {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffd700; /* Color brillante para el nombre */
+}
+
+.nature-effect__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(121, 4, 255, 0.199);
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+.nature-card__flavors {
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+    font-size: 0.85em;
+    color: #9fb0df;
+}
+
+
+
+
+
+
+/* style.css: Añadir estos estilos */
+
+/* === CONTENEDOR DE TIPOS === */
+.types-grid {
+    display: grid;
+    /* Ajusta la cuadrícula para que quepan 4 o 5 columnas en escritorios */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+    gap: 15px;
+    padding: 15px 0;
+}
+
+/* === ESTILO DEL BOTÓN DE TIPO === */
+.type-button {
+    /* Propiedades visuales */
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    
+    /* Animación */
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    
+    /* Variables de color para usar en el hover */
+    --type-color: #777777; /* Default fallback */
+}
+
+/* Contenido interno */
+.type-button__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Ícono */
+.type-button__icon {
+    font-size: 1.8em; /* Ícono más grande */
+    opacity: 0.9;
+    transition: transform 0.2s;
+}
+
+/* Texto */
+.type-button__text {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* === EFECTO HOVER Y ACTIVO === */
+.type-button:hover {
+    /* Usa la variable de color para el sombreado y el borde */
+    border-color: var(--type-color);
+    box-shadow: 0 0 15px 1px var(--type-color) inset, 0 0 10px 0 var(--type-color);
+    transform: scale(1.05) translateY(-2px); /* Pequeña elevación animada */
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.type-button:hover .type-button__icon {
+    transform: scale(1.1); /* Hace que el ícono se agrande un poco más */
+}
+
+/* Estilo para el botón activo (opcional: si quieres marcar el tipo seleccionado) */
+.type-button.active {
+    background-color: var(--type-color);
+    border-color: var(--type-color);
+    color: #000;
+}
+.type-button.active .type-button__text {
+    color: #000;
+}
