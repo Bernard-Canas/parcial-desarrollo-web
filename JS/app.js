@@ -170,7 +170,7 @@ function attachUIHandlers() {
   }
 }
 
-// 1. Crea el elemento compacto (TODOS, TIPOS filtrado)
+// (TODOS, TIPOS filtrado)
 function createCompactItem(p) {
     const item = document.createElement('div');
     item.className = 'all-item-compact';
@@ -183,7 +183,7 @@ function createCompactItem(p) {
     return item;
 }
 
-// 2. Crea la tarjeta grande (INICIO, FAVORITOS)
+// (INICIO, FAVORITOS)
 function createPopularCard(poke) {
   const totalStats = (poke.stats || []).reduce((s, st) => s + (st.base_stat || 0), 0);
   const popularity = Math.min(100, Math.round((totalStats / 600) * 100));
@@ -250,9 +250,7 @@ function toggleFavorite(id) {
   saveFavorites();
 }
 
-/* =======================================
-   CARGA DE SECCIONES DE DATOS
-   ======================================= */
+/* CARGAR DATOS DE LA API */
 
 async function loadPopular() {
   if (popularGrid && popularGrid.childElementCount > 0) return; 
@@ -437,9 +435,7 @@ async function loadNatureSection() {
     }
 }
 
-/* =======================================
-   BÚSQUEDA Y DETALLE
-   ======================================= */
+/*BUSQUEDA Y DETALLE DE POKEMONES*/
 
 async function handleSearch() {
   if (!searchInput) return;
