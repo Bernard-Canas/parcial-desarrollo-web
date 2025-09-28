@@ -1,8 +1,3 @@
-/* app.js - Kanas Pokedex (VERSIÓN FINAL Y FUNCIONAL) */
-
-/* =======================================
-   CONFIGURACIÓN Y SELECTORES
-   ======================================= */
 const API_BASE = 'https://pokeapi.co/api/v2';
 const popularIds = [25, 1, 4, 6, 150, 149, 143, 94, 130, 445];
 const STORAGE_KEY = 'kanas_pokedex_favs_final_v1';
@@ -32,9 +27,7 @@ const natureList = document.getElementById('natureList');
 let favorites = loadFavorites(); 
 let currentSection = 'inicio';
 
-/* =======================================
-   INICIALIZACIÓN
-   ======================================= */
+/*INICIALIZACIÓN*/
 document.addEventListener('DOMContentLoaded', () => {
   attachUIHandlers();
   
@@ -47,10 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Establecemos 'inicio' como la vista por defecto
   switchPanel('inicio');
 });
-
-/* =======================================
-   UTILIDADES Y HELPERS
-   ======================================= */
 
 function loadFavorites() {
   try {
@@ -104,10 +93,6 @@ const typeIcons = {
     rock: 'fa-gem', ghost: 'fa-ghost', dragon: 'fa-dragon', dark: 'fa-moon',
     steel: 'fa-cog', fairy: 'fa-magic'
 };
-
-/* =======================================
-   MANEJO DE UI (Sidebar, Menú, Paneles)
-   ======================================= */
 
 function openSidebar() {
   sidebar?.classList.add('open');
@@ -184,10 +169,6 @@ function attachUIHandlers() {
       console.error("CRÍTICO: searchButton o searchInput no encontrados. La función de búsqueda está deshabilitada.");
   }
 }
-
-/* =======================================
-   RENDERIZADO DE COMPONENTES
-   ======================================= */
 
 // 1. Crea el elemento compacto (TODOS, TIPOS filtrado)
 function createCompactItem(p) {
