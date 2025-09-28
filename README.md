@@ -2,6 +2,7 @@
 # Curso: Desarrollo Web
 # Nombre: Bernardo Canas    
 # Carné: 202401637
+# Link: https://bernard-canas.github.io/parcial-desarrollo-web/
 
 Este proyecto es una Pokedex moderna y dinámica que consume la [PokeAPI](https://pokeapi.co/) utilizando `fetch` para mostrar información detallada sobre los Pokémon de la primera generación. La interfaz de usuario está diseñada con un estilo limpio y se organiza mediante la metodología **BEM** (Block, Element, Modifier).
 
